@@ -27,12 +27,12 @@ public class MyCustomString implements MyCustomStringInterface {
     }
 
     public String addDigits(int n, boolean reverse) {
+        if(string == null) {
+            throw new NullPointerException();
+        }
         char[] convertedChar = string.toCharArray();
         if(n > 9 || n <= 0) {
             throw new IllegalArgumentException();
-        }
-        if(string == null) {
-            throw new NullPointerException();
         }
         for(int i = 0; i < convertedChar.length; i++) {
             if(isDigit(convertedChar[i])) {
@@ -69,6 +69,9 @@ public class MyCustomString implements MyCustomStringInterface {
         if(startPosition < 1 || startPosition > endPosition) {
             throw new IllegalArgumentException();
         }
+        if(endPosition > string.length()+1) {
+            throw new MyIndexOutOfBoundsException("MyIndexOutOfBoundsException > 1");
+        }
         if(endPosition > string.length()) {
             throw new MyIndexOutOfBoundsException();
         }
@@ -85,9 +88,5 @@ public class MyCustomString implements MyCustomStringInterface {
         ConvertedCustomSubstring = ConvertedCustomSubstring.replaceAll("8","eight");
         ConvertedCustomSubstring = ConvertedCustomSubstring.replaceAll("9","nine");
         string = string.substring(0, startPosition-1) + ConvertedCustomSubstring + string.substring(endPosition);
-    }
-
-    public void main(String[] args) {
-
     }
 }

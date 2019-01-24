@@ -167,6 +167,12 @@ public class MyCustomStringTest {
         assertEquals("9012345678901234567887654321099012345678", mycustomstring.addDigits(8, false));
     }
 
+    //Test Purpose: This is to test corner case of null pointer and reverse.
+    @Test(expected = NullPointerException.class)
+    public void testAddDigits13() {
+        mycustomstring.setString(null);
+        assertEquals("", mycustomstring.addDigits(3, true));
+    }
 
     //Test Purpose: This is the fourth instructor example test.
     @Test
@@ -246,4 +252,11 @@ public class MyCustomStringTest {
         assertEquals("*threethreethree* *fivefivefivefivefive* **twotwo**", mycustomstring.getString());
     }
 
+    //Test Purpose: This is to test corner case of big endPosition.
+    @Test(expected = MyIndexOutOfBoundsException.class)
+    public void testConvertDigitsToNamesInSubstring11() {
+        mycustomstring.setString("I'd b3tt3r put s0me d161ts in this 5tr1n6, right?");
+        mycustomstring.convertDigitsToNamesInSubstring(5, 50);
+        assertEquals("I'd b3tt3r put s*zero*me d*onesix*1ts in this 5tr1n6, right?", mycustomstring.getString());
+    }
 }
