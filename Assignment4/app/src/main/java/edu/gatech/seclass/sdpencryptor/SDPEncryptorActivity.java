@@ -78,6 +78,8 @@ public class SDPEncryptorActivity extends AppCompatActivity {
             int rotateInt = Integer.parseInt(rotateNumber.getText().toString());
             if(shiftInt < 0 || shiftInt > 25) {
                 shiftNumber.setError("Must Be Between 0 And 25");
+                if(rotateInt < 0)
+                    rotateNumber.setError("Positive number required!");
                 resultText.setText("");
                 return;
             }
