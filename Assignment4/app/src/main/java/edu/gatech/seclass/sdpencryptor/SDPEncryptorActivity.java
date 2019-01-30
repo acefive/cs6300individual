@@ -51,26 +51,27 @@ public class SDPEncryptorActivity extends AppCompatActivity {
     }
 
     public void handleClick(View view) {
-        messageText.setError(null);
-        shiftNumber.setError(null);
-        rotateNumber.setError(null);
         if(view.getId() ==  R.id.encryptButton) {
+            messageText.setError(null);
+            shiftNumber.setError(null);
+            rotateNumber.setError(null);
             String messageString = messageText.getText().toString();
-            if(messageString == null || messageString.isEmpty() || !messageString.matches(".*[a-zA-Z].*")) {
-                messageText.setError("Alphabetic Message Required");
-                resultText.setText("");
-            }
             String shiftString = shiftNumber.getText().toString();
             String rotateString = rotateNumber.getText().toString();
+            boolean foundError = false;
+            if(messageString == null || messageString.isEmpty() || !messageString.matches(".*[a-zA-Z].*")) {
+                messageText.setError("Alphabetic Message Required");
+                foundError = true;
+            }
             if(shiftString == null || shiftString.isEmpty()) {
                 shiftNumber.setError("Must Be Between 0 And 25");
-                if(rotateString == null || rotateString.isEmpty())
-                    rotateNumber.setError("Positive number required!");
-                resultText.setText("");
-                return;
+                foundError = true;
             }
             if(rotateString == null || rotateString.isEmpty()) {
                 rotateNumber.setError("Positive number required!");
+                foundError = true;
+            }
+            if(foundError) {
                 resultText.setText("");
                 return;
             }
@@ -78,26 +79,24 @@ public class SDPEncryptorActivity extends AppCompatActivity {
             int rotateInt = Integer.parseInt(rotateNumber.getText().toString());
             if(shiftInt < 0 || shiftInt > 25) {
                 shiftNumber.setError("Must Be Between 0 And 25");
-                if(rotateInt < 0)
-                    rotateNumber.setError("Positive number required!");
-                resultText.setText("");
-                return;
+                foundError = true;
             }
             if(shiftInt == 0 && rotateInt == 0) {
                 shiftNumber.setError("No Encryption Applied");
                 rotateNumber.setError("No Encryption Applied");
-                resultText.setText("");
-                return;
+                foundError = true;
             }
             if(rotateInt < 0) {
                 rotateNumber.setError("Positive number required!");
-                resultText.setText("");
-
+                foundError = true;
                 Context context = getApplicationContext();
                 CharSequence text = "Positive number required!";
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
+            }
+            if(foundError) {
+                resultText.setText("");
                 return;
             }
             resultText.setText(getResultText(messageString, shiftInt, rotateInt));
