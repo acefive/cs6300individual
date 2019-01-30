@@ -27,7 +27,7 @@ An implementation of Cesar Encryption. Input some string that contains at least 
 
 ## Screenshots
 
-<img src="img/10.png" alt="No Encryption Applied" width="216" height="384">
+<img src="img/10.png" alt="No Encryption Applied" width="216" height="384"> <img src="img/test1.png" alt="No Encryption Applied" width="216" height="384"> <img src="img/test2.png" alt="No Encryption Applied" width="216" height="384"> <img src="img/test3.png" alt="No Encryption Applied" width="216" height="384">
 
 <img src="img/default.png" alt="Default interface" width="216" height="384"> <img src="img/nullnullnullAMR.png" alt="No Encryption Applied" width="216" height="384"> <img src="img/00NEA1.png" alt="No Encryption Applied" width="216" height="384"> <img src="img/00NEA2.png" alt="No Encryption Applied" width="216" height="384">
 
