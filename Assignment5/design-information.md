@@ -1,7 +1,9 @@
 # Requirement
 
-1. A user will be able to choose to log in as a specific player or log in as the administrator when starting the application.  For simplicity, any authentication is optional, and you may assume there is a single system running the application.
+1. A user will be able to choose to log in as a specific player or log in as the administrator when starting the application. For simplicity, any authentication is optional, and you may assume there is a single system running the application.
+	* Since the process of the login are not the purpose of this UML diagram, we will simply ignore what is before the login process and just focus on players and administrators.
 2. The application will allow players to (1) choose a cryptogram to solve, (2) solve cryptograms, and (3) view the list of player statistics.
+	* Here we can see that each player has a list of unsolved cryptograms and remaining attempts if already attempted. He can choose a cryptogram from the list to solve. When the player is solving cryptograms, he calles the function from cryptogram, and hands in the parameters. The function(operation) from the cryptogram returns if the solution is correct. A list of player statistics is a standalone object and is not a class.
 3. The application will allow the administrator to (1) create a cryptogram, (2) create a player, and (3) view the list of player statistics.
 4. A cryptogram will have a solution (the plaintext phrase) and a maximum number of allowed solution attempts for each of three difficulty categories.  
 5. To add a player, the administrator will enter the following player information:
@@ -37,12 +39,16 @@
 
 # Extraction
 
+1. Classes
+2. Attributes
+3. Operations
+4. Relationships
 * user
-* player: first name, last name, username, category
-* administrator: edit cryptogram and save
+* player: first name, last name, username, category, view status, view list of unsolved, choose to solve, view the cryptogram and remaining attempts, submit answer, get previous state
+* administrator: edit cryptogram and save, check name uniqueness, return to menu or editing
 * player choices
 * administrator choices
-* cryptogram: unique name, solution, three maximum attempts
+* cryptogram: name, solution, three maximum attempts, randomization each time, only change necessary, return match, return submission correction and decrease remaining attempts, previous state for a player
 * list of players
 * solution to cryptogram
 * difficulty category
