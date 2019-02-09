@@ -28,7 +28,7 @@
 	* Replacing each letter with another letter randomly, so that all of any particular letter are replaced with the same other letter, such as all A’s becoming C’s, and every letter is paired with a unique encrypted letter.
 	* Preserving the capitalization in the original phrase.
 	* Preserving any non-alphabetic characters (such as punctuation or white space) unaltered.
-	* *There is a randomize operation in the cryptogram class*
+	* *There is a constructor function(operation) inside the cryptogram class. Everytime a player get a new cryptogram that he/she has never attempted before, the cryptogram will be randomized according to the rules.*
 8. To choose and then solve a cryptogram, a player will:
 	* View the list of all unsolved cryptograms alongside their status as in progress or unstarted, and choose a cryptogram to solve.
 	* View the chosen cryptogram and number of incorrect solution attempts remaining (starting at whatever number is allowed for the player’s difficulty level for that cryptogram).  If the cryptogram has not been played by this player before, the fully encrypted phrase should be generated and displayed.  If the cryptogram is in progress, the previous state of the phrase should be displayed.
@@ -38,28 +38,18 @@
 	* At any point, the player may return to the list of unsolved cryptograms to try another.
 	* If the number of incorrect solution attempts reaches zero, they will get a result that the cryptogram game was lost, and this cryptogram will be marked as complete, unavailable for this player to attempt again. They will then return to the menu.
 	* If the player successfully solves the cryptogram, they will get a result that the cryptogram game was won, and this cryptogram will be marked as complete, unavailable for this player to attempt again.  They will then return to the menu.
+	* *Here we can see that the player has several operations which take different input and return different outputs. To view the list of all unsolved cryptograms, the player has an operation called `getListOfUnsolvedAttempts()`. Also, if a player want to solve a specific cryptogram, he will use the function `Cryptogram getCryptogram(int)`. After solving the cryptogram, there is one function `boolean solveCryptogram(int,String)`, which returns whether the answer is correct. In the mean time, if the answer is incorrect, the remaining attempts will decrease, which will be performed in side the function. At any point, the player can save the current state of the cryptogram and choose another cryptogram to solve.*
 9. The list of player statistics will display a list of players in descending order of number of cryptograms won.  The entry for each player will show their first name, the number of cryptograms won, and the number of cryptograms lost.  An administrator should also see the username and difficulty status of the player.
+	* *The list of player statistics is a standalone object instead of a class. The realization of the attributes inside of the list are first names, the number of cryptograms won, and the numebr of cryptograms lost, username and categories. Since the last two items are not visible to players, we have different realizations of functions between player class and administrator class.*
 10. The user interface must be intuitive and responsive.
+	* *We are not required to write a UML diagram for this requirement since it's not the main purpose of the system.*
 11. The performance of the game should be such that students do not experience any considerable lag between their actions and the response of the application.
+	* *We are not required to write a UML diagram for this requirement since it's the implementation requirement and not the main purpose of the system. It's part of the realization.*
 
 # Extraction
 
 1. Classes
+	* 
 2. Attributes
 3. Operations
 4. Relationships
-* user
-* player: first name, last name, username, category, view status, view list of unsolved, choose to solve, view the cryptogram and remaining attempts, submit answer, get previous state
-* administrator: edit cryptogram and save, check name uniqueness, return to menu or editing
-* player choices
-* administrator choices
-* cryptogram: name, solution, three maximum attempts, randomization each time, only change necessary, return match, return submission correction and decrease remaining attempts, previous state for a player
-* list of players
-* solution to cryptogram
-* difficulty category
-* maximum attempts
-* 
-* 
-* 
-* 
-* 
