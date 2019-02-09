@@ -3,17 +3,17 @@
 1. A user will be able to choose to log in as a specific player or log in as the administrator when starting the application. For simplicity, any authentication is optional, and you may assume there is a single system running the application.
 	* *Since the process of the login are not the purpose of this UML diagram, we will simply ignore what is before the login process and just focus on players and administrators.*
 2. The application will allow players to (1) choose a cryptogram to solve, (2) solve cryptograms, and (3) view the list of player statistics.
-	* Here we can see that each player has a list of unsolved cryptograms and remaining attempts if already attempted. He can choose a cryptogram from the list to solve. When the player is solving cryptograms, he calles the function from cryptogram, and hands in the parameters. The function(operation) from the cryptogram returns if the solution is correct. A list of player statistics is a standalone object and is not a class.
+	* *Here we can see that each player has a list of unsolved cryptograms and remaining attempts if already attempted. He can choose a cryptogram from the list to solve. When the player is solving cryptograms, he calles the function from cryptogram, and hands in the parameters. The function(operation) from the cryptogram returns if the solution is correct. A list of player statistics is a standalone object and is not a class.*
 3. The application will allow the administrator to (1) create a cryptogram, (2) create a player, and (3) view the list of player statistics.
-	* Here administrators have an operation that creates a cryptogram, an operation to create a player. And the administrators can read the list of player statistics just like players.
+	* *Here administrators have an operation that creates a cryptogram, an operation to create a player. And the administrators can read the list of player statistics just like players.*
 4. A cryptogram will have a solution (the plaintext phrase) and a maximum number of allowed solution attempts for each of three difficulty categories.  
-	* The solution is an attribute inside of cryptograms. We can call solutions directly from cryptograms. And every cryptogram has default attempts specific to each of the three difficulty categories, which is an attribute within the cryptogram class as well.
+	* *The solution is an attribute inside of cryptograms. We can call solutions directly from cryptograms. And every cryptogram has default attempts specific to each of the three difficulty categories, which is an attribute within the cryptogram class as well.*
 5. To add a player, the administrator will enter the following player information:
 	* A first name
 	* A last name
 	* A unique username
 	* A difficulty category: easy, normal or hard.
-
+	* *There is a construction function inside of player class, which takes four parameters as input. These four attributes are inside of player class. When we call the construction function of class player, we will create a new player. And this operation is called by administrators.*
 6. To add a new cryptogram, the administrator will:
 	* Enter a unique cryptogram name.
 	* Enter a solution (unencoded) phrase.
@@ -23,10 +23,12 @@
 	* Edit any of the above steps as necessary.
 	* Save the complete cryptogram.
 	* View a confirmation that the name assigned to the cryptogram is unique and return to the main menu, or be returned to editing the cryptogram after any error is displayed.
+	* *Just like adding players, administrators can add cryptograms, and the construction function inside of cryptogram class need these parameters. These are attributes of cryptogram class. While creating cryptograms, the operation will return if the name is unique. Here the method of returning uniqueness is not our concern, and we just assume that after creation, the operation returns and the administrator will need to return to menu or edit the attributes of the cryptogram.*
 7. The encrypted phrase for the cryptogram will be generated for each player starting a new cryptogram by:
 	* Replacing each letter with another letter randomly, so that all of any particular letter are replaced with the same other letter, such as all A’s becoming C’s, and every letter is paired with a unique encrypted letter.
 	* Preserving the capitalization in the original phrase.
 	* Preserving any non-alphabetic characters (such as punctuation or white space) unaltered.
+	* *There is a randomize operation in the cryptogram class*
 8. To choose and then solve a cryptogram, a player will:
 	* View the list of all unsolved cryptograms alongside their status as in progress or unstarted, and choose a cryptogram to solve.
 	* View the chosen cryptogram and number of incorrect solution attempts remaining (starting at whatever number is allowed for the player’s difficulty level for that cryptogram).  If the cryptogram has not been played by this player before, the fully encrypted phrase should be generated and displayed.  If the cryptogram is in progress, the previous state of the phrase should be displayed.
