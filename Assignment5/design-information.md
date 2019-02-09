@@ -49,7 +49,30 @@
 # Extraction
 
 1. Classes
-	* 
+	* Player
+	* Cryptogram
+	* Administrator
 2. Attributes
+	* Player
+		* (String[]) listOfUnsolvedAttempts
+		* (String) firstName
+		* (String) lastName
+		* (String) username
+		* (String) category
+	* Cryptogram
+		* (String) solution
+		* (int[3]) attempts
+		* (String) name
+		* (String) previousState
+	* Administrator
+	* ListPlayerStats
+		* (String[]) firstName:
+		* (int[]) numberOfWon
+		* (int[]) numberOfLost
+		* (String[]) username
+		* (String[]) category
 3. Operations
+	* Player
+	* Cryptogram
+	* Administrator
 4. Relationships
