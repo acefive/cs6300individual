@@ -1,16 +1,19 @@
 # Requirement
 
 1. A user will be able to choose to log in as a specific player or log in as the administrator when starting the application. For simplicity, any authentication is optional, and you may assume there is a single system running the application.
-	* Since the process of the login are not the purpose of this UML diagram, we will simply ignore what is before the login process and just focus on players and administrators.
+	*Since the process of the login are not the purpose of this UML diagram, we will simply ignore what is before the login process and just focus on players and administrators.*
 2. The application will allow players to (1) choose a cryptogram to solve, (2) solve cryptograms, and (3) view the list of player statistics.
 	* Here we can see that each player has a list of unsolved cryptograms and remaining attempts if already attempted. He can choose a cryptogram from the list to solve. When the player is solving cryptograms, he calles the function from cryptogram, and hands in the parameters. The function(operation) from the cryptogram returns if the solution is correct. A list of player statistics is a standalone object and is not a class.
 3. The application will allow the administrator to (1) create a cryptogram, (2) create a player, and (3) view the list of player statistics.
+	* Here administrators have an operation that creates a cryptogram, an operation to create a player. And the administrators can read the list of player statistics just like players.
 4. A cryptogram will have a solution (the plaintext phrase) and a maximum number of allowed solution attempts for each of three difficulty categories.  
+	* The solution is an attribute inside of cryptograms. We can call solutions directly from cryptograms. And every cryptogram has default attempts specific to each of the three difficulty categories, which is an attribute within the cryptogram class as well.
 5. To add a player, the administrator will enter the following player information:
 	* A first name
 	* A last name
 	* A unique username
 	* A difficulty category: easy, normal or hard.
+
 6. To add a new cryptogram, the administrator will:
 	* Enter a unique cryptogram name.
 	* Enter a solution (unencoded) phrase.
