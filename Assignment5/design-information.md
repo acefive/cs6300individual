@@ -73,6 +73,24 @@
 		* (String[]) category
 3. Operations
 	* Player
+		* Cryptogram getCryptogram(int)
+		* boolean solveCryptogram(int,String)
+		* getListPlayerStats()
+		* getListOfUnsolvedAttempts()
+		* saveCurrentState(int,String)
 	* Cryptogram
+		* Cryptogram()
+		* boolean getCorrectness()
+		* boolean getCompleteness()
+		* markAsComplete()
 	* Administrator
+		* createPlayer(String,String,String,String)
+		* getListPlayerStats()
+		* boolean createCryptogram(String,String,int,int,int)
+		* boolean editCryptogram(String,String,int,int,int)
 4. Relationships
+	* Player can access ListPlayerStats
+	* Administrator can access ListPlayerStats with more information
+	* Administrator can create Player
+	* Administrator can create Cryptogram
+	* Player can access Cryptogram
