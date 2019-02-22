@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca2f2ab4-1773-4845-8c03-4f0e41afa8e1" name="Default Changelist" comment="" />
+    <list default="true" id="ca2f2ab4-1773-4845-8c03-4f0e41afa8e1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/edu/gatech/seclass/MyCustomString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/gatech/seclass/MyCustomString.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -25,37 +29,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/MyCustomStringTest.java">
+        <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/MyCustomStringTestSolution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="161" selection-start-line="161" selection-end-line="161" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/MyCustomStringInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/MyIndexOutOfBoundsException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/MyCustomString.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+            <state relative-caret-position="666">
+              <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -85,8 +62,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -108,6 +83,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -117,7 +94,8 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548305425022" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550085040731" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Assignment4" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -136,7 +114,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MyCustomStringTest">
+  <component name="RunManager" selected="JUnit.MyCustomStringTestSolution">
     <configuration name="MyCustomStringTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment3" />
       <extension name="coverage">
@@ -147,6 +125,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="edu.gatech.seclass" />
       <option name="MAIN_CLASS_NAME" value="edu.gatech.seclass.MyCustomStringTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyCustomStringTestSolution" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.gatech.seclass.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.gatech.seclass" />
+      <option name="MAIN_CLASS_NAME" value="edu.gatech.seclass.MyCustomStringTestSolution" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,6 +163,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MyCustomStringTestSolution" />
         <item itemvalue="JUnit.MyCustomStringTest" />
         <item itemvalue="JUnit.MyCustomStringTest.testConvertDigitsToNamesInSubstring11" />
       </list>
@@ -187,6 +181,8 @@
       <updated>1548304060397</updated>
       <workItem from="1548304063703" duration="1264000" />
       <workItem from="1548455219553" duration="132000" />
+      <workItem from="1550084134107" duration="905000" />
+      <workItem from="1550118250194" duration="66000" />
     </task>
     <servers />
   </component>
@@ -212,14 +208,20 @@
     <history-entry file="MyCustomStringTest - 2019.01.23 at 22h 50m 49s.xml">
       <configuration name="MyCustomStringTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MyCustomStringTestSolution - 2019.02.13 at 12h 57m 20s.xml">
+      <configuration name="MyCustomStringTestSolution" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MyCustomStringTestSolution - 2019.02.13 at 13h 10m 52s.xml">
+      <configuration name="MyCustomStringTestSolution" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1396000" />
+    <option name="totallyTimeSpent" value="2367000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2532124" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26077098" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -278,8 +280,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/MyCustomString.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+        <state relative-caret-position="323">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/MyCustomStringTestSolution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
         </state>
       </provider>
     </entry>

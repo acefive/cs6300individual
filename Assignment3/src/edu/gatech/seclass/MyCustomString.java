@@ -22,7 +22,9 @@ public class MyCustomString implements MyCustomStringInterface {
             return 0;
         } else {
             string = string.replaceAll("[^0-9]+", " ");
-            return string.trim().split("\\s+").length;
+            String[] countNum = string.trim().split("\\s+");
+            if(countNum.length == 1 && countNum[0].equals("")) return 0;
+            else return countNum.length;
         }
     }
 
