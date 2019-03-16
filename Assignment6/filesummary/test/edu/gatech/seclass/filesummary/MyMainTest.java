@@ -114,7 +114,7 @@ public class MyMainTest {
         String args[] = {"-s", "dog", "cat", inputFile1.getPath()};
         Main.main(args);
 
-        String expected1 = inputFile1;
+        String expected1 = FILE1;
 
         String actual1 = getFileContent(inputFile1.getPath());
 
@@ -130,7 +130,7 @@ public class MyMainTest {
         String args[] = {"-k", "2", "-s", "dog", "-a"};
         Main.main(args);
 
-        String expected2 = inputFile2;
+        String expected2 = FILE1;
 
         String actual2 = getFileContent(inputFile2.getPath());
 
@@ -346,7 +346,7 @@ public class MyMainTest {
         String args[] = {"-s", "", inputFile15.getPath()};
         Main.main(args);
 
-        String expected15 = inputFile15;
+        String expected15 = FILE1;
 
         String actual15 = getFileContent(inputFile15.getPath());
 
