@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a15ed3d-9a60-468d-80a3-f4a9b7ec7069" name="Default Changelist" comment="" />
+    <list default="true" id="4a15ed3d-9a60-468d-80a3-f4a9b7ec7069" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/filesummary/MyMainTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="116" column="37" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="37" />
+            <state relative-caret-position="17">
+              <caret line="116" column="33" selection-start-line="116" selection-start-column="33" selection-end-line="116" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,8 +81,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -120,16 +122,18 @@
       <updated>1552700050269</updated>
       <workItem from="1552700056299" duration="1894000" />
       <workItem from="1552791837076" duration="722000" />
+      <workItem from="1552720020323" duration="284000" />
+      <workItem from="1552797757905" duration="155000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2616000" />
+    <option name="totallyTimeSpent" value="3055000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="20" width="1348" height="832" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25348836" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2612403" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -182,8 +186,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/filesummary/MyMainTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="116" column="37" selection-start-line="116" selection-start-column="27" selection-end-line="116" selection-end-column="37" />
+        <state relative-caret-position="17">
+          <caret line="116" column="33" selection-start-line="116" selection-start-column="33" selection-end-line="116" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
