@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-public class CoverageClassTestBC1 {
+public class CoverageClassTestSC1 {
 
     public CoverageClass myClass;
 
@@ -18,8 +18,7 @@ public class CoverageClassTestBC1 {
     }
 
     @Test
-    public void testCoverageClassTestBC1() {
-        myClass.coverageMethod1();
+    public void testCoverageClassTestSC1() {
         myClass.coverageMethod1();
     }
 
@@ -27,5 +26,4 @@ public class CoverageClassTestBC1 {
     public void tearDown() {
         myClass = null;
     }
-
 }
