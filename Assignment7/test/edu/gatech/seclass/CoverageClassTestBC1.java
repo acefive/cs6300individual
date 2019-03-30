@@ -19,8 +19,8 @@ public class CoverageClassTestBC1 {
 
     @Test
     public void testCoverageClassTestBC1() {
-        myClass.coverageMethod1();
-        myClass.coverageMethod1();
+        myClass.coverageMethod1(1);
+        myClass.coverageMethod1(0);
     }
 
     @After

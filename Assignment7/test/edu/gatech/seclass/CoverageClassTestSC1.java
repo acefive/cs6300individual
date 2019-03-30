@@ -11,7 +11,6 @@ public class CoverageClassTestSC1 {
 
     public CoverageClass myClass;
 
-
     @Before
     public void setUp() {
         myClass = new CoverageClass();
@@ -19,7 +18,7 @@ public class CoverageClassTestSC1 {
 
     @Test
     public void testCoverageClassTestSC1() {
-        myClass.coverageMethod1();
+        myClass.coverageMethod1(1);
     }
 
     @After
