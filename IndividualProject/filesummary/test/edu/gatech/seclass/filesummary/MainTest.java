@@ -48,8 +48,8 @@ public class MainTest {
     }
 
     /*
-    *  TEST UTILITIES
-    */
+     *  TEST UTILITIES
+     */
 
     // Create File Utility
     private File createTmpFile() throws Exception {
@@ -63,7 +63,7 @@ public class MainTest {
         File file =  createTmpFile();
 
         OutputStreamWriter fileWriter =
-                     new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+                new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
 
         fileWriter.write(input);
 
@@ -82,20 +82,20 @@ public class MainTest {
         }
         return content;
     }
-	
-	/*
-	* TEST FILE CONTENT
-	*/
-	private static final String FILE1 = "1 dog" + System.lineSeparator() + "2 cat";
-    	private static final String FILE2 = "Log: 123 abc\nError: 123 xyz\nError: 567 abc\nLog: 567 abc";
-	private static final String FILE3 = "Up with the white and gold\rDown with the red and black";
-	
+
+    /*
+     * TEST FILE CONTENT
+     */
+    private static final String FILE1 = "1 dog" + System.lineSeparator() + "2 cat";
+    private static final String FILE2 = "Log: 123 abc\nError: 123 xyz\nError: 567 abc\nLog: 567 abc";
+    private static final String FILE3 = "Up with the white and gold\rDown with the red and black";
+
 
     // test cases
 
     /*
-    *   TEST CASES
-    */
+     *   TEST CASES
+     */
 
     // Purpose: To provide an example of a test case format
     // Frame #: Instructor example 1 from assignment directions
