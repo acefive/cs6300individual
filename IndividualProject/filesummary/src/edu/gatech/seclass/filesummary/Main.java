@@ -30,7 +30,7 @@ public class Main {
         String lineSep = "";
         try {
             Reader r = new FileReader(filePathString);
-            int i = -1;
+            int i;
             Eol eol = null;
             while(eol == null) {
                 if((i = r.read()) != -1) {
@@ -71,30 +71,22 @@ public class Main {
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = null;
-        try {
-            cmd = parser.parse(options, args);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        try { cmd = parser.parse(options, args); }
+        catch (ParseException e) { e.printStackTrace(); }
 
         try {
             List<String> lines = Files.readAllLines(filePath, charset);
 
             if(cmd.hasOption("s")) {
                 String sArgument = cmd.getOptionValue("s");
-                String allLines = "";
-                for(String line : lines) {
-                    allLines += line + lineSep;
-                }
-                if(sArgument == null) {
-                    //TODO
-                } else {
-                    Matcher matcher = Pattern.compile("["+sArgument+"]+").matcher(allLines);
-                    List<String> allMatches = new ArrayList<String>();
-                    while(matcher.find()){
-                        allMatches.add(matcher.group());
-                    }
-                    Collections.sort (allMatches, new Comparator<String>() {
+                StringBuilder allLines = new StringBuilder();
+                for(String line : lines) { allLines.append(line).append(lineSep); }
+                if(sArgument == null || sArgument.equals("")) { System.out.println(); }
+                else {
+                    Matcher matcher = Pattern.compile("["+sArgument+"]+").matcher(allLines.toString());
+                    List<String> allMatches = new ArrayList<>();
+                    while(matcher.find()){ allMatches.add(matcher.group()); }
+                    allMatches.sort(new Comparator<>() {
                         public int compare(String string1, String string2) {
                             return string2.length() - string1.length();
                         }
@@ -105,9 +97,7 @@ public class Main {
             }
             if(cmd.hasOption("r") && !cmd.hasOption("k")) {
                 String rArgument = cmd.getOptionValue("r");
-                if(rArgument == null) {
-                    // TODO
-                } else {
+                if(rArgument != null && !rArgument.equals("")) {
                     Iterator iterator = lines.iterator();
                     while(iterator.hasNext()) {
                         String string = (String)iterator.next();
@@ -120,8 +110,8 @@ public class Main {
             }
             if(cmd.hasOption("k") && !cmd.hasOption("r")) {
                 String kArgument = cmd.getOptionValue("k");
-                if(kArgument == null) {
-                    // TODO
+                if(kArgument.equals("")) {
+                    lines = new ArrayList<>();
                 } else {
                     Iterator iterator = lines.iterator();
                     while(iterator.hasNext()) {
@@ -136,18 +126,23 @@ public class Main {
             if(cmd.hasOption("a")) {
                 String aArgument = cmd.getOptionValue("a");
 
-                if(aArgument == null) {
-                    Collections.sort (lines);
-                } else {
-                    int aNumber = Integer.parseInt(aArgument);
+                if(aArgument == null || aArgument.equals("")) { Collections.sort (lines); }
+                else {
+                    int aNumber;
+                    if(aArgument.length() > 6) { aNumber = 999999; }
+                    else { aNumber = Integer.parseInt(aArgument); }
                     if(aNumber <= 0) {
-                        // TODO
+                        usage();
+                        return;
                     } else {
-                        Collections.sort (lines, new Comparator<String>() {
+                        lines.sort(new Comparator<String>() {
                             public int compare(String string1, String string2) {
-                                String sub1 = string1.substring (aNumber);
-                                String sub2 = string2.substring (aNumber);
-                                return sub1.compareTo (sub2);
+                                String sub1, sub2;
+                                if (aNumber < string1.length()) { sub1 = string1.substring(aNumber); }
+                                else { sub1 = ""; }
+                                if (aNumber < string2.length()) { sub2 = string2.substring(aNumber); }
+                                else { sub2 = ""; }
+                                return sub1.compareTo(sub2);
                             }
                         });
                     }
@@ -170,11 +165,11 @@ public class Main {
             for(int i = 0; i < lines.size() - 1; i++) {
                 writer.write(lines.get(i) + lineSep);
             }
-            writer.write(lines.get(lines.size()-1));
+            if(lines.size() > 0) {
+                writer.write(lines.get(lines.size()-1));
+            }
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) { e.printStackTrace(); }
     }
 
     private static void usage() {
