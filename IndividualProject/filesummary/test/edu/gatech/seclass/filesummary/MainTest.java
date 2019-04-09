@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 import static org.junit.Assert.*;
 
 /*
+This test class was developed for Georgia Tech's CS6300 course.
+This class and the associated assignment should not be posted in any public repository, per the honor code.
 DO NOT ALTER THIS CLASS.  Use it as an example for MyMainTest.java
  */
 
@@ -89,6 +91,36 @@ public class MainTest {
 	private static final String FILE1 = "1 dog" + System.lineSeparator() + "2 cat";
     	private static final String FILE2 = "Log: 123 abc\nError: 123 xyz\nError: 567 abc\nLog: 567 abc";
 	private static final String FILE3 = "Up with the white and gold\rDown with the red and black";
+    private static final String FILE4 = "";
+    private static final String FILE5 = " ";
+    private static final String FILE6 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String FILE7 = "Let's try some **special**  %!(characters)!% ###\n" +
+            "and line breaks^$@ \r" +
+            "of \\different// types; \n" +
+            "in 1 file\r"+
+            ":-)";
+    private static final String FILE8 = "Up with the white and gold\r" +
+            "Down with the red and black\r" +
+            "Georgia Tech is out for a victory\r" +
+            "Well drop a battle axe on georgia's head\r" +
+            "When we meet her our team is sure to beat her\r" +
+            "Down on the old farm there will be no sound\r" +
+            "'Till our bow wows rips through the air\r" +
+            "When the battle is over georgia's team will be found\r" +
+            "With the Yellow Jacket's swarming 'round! Hey!";
+    private static final String FILE9 = ".*";
+    private static final String FILE10 = "Howdy Billy," + System.lineSeparator() +
+            "I am going to take cs6300 and cs6400 next semester."  + System.lineSeparator() +
+            "Did you take cs 6300 last semester? I want to"  + System.lineSeparator() +
+            "take 2 courses so that I will graduate Asap!";
+    private static final String FILE11 = "\n";
+    private static final String FILE12 = "Howdy Billy," + System.lineSeparator() + System.lineSeparator()+
+            "I am going to take cs6300 and cs6400 next semester."  + System.lineSeparator() +
+            "Did you take cs 6300 last semester? I want to"  + System.lineSeparator() + System.lineSeparator()+
+            "take 2 courses so that I will graduate Asap!" + System.lineSeparator();
+    private static final String FILE13 = "ABCDEF\nghijkl\rMNOPQR";
+    private static final String FILE14 = "abcdef\rGHIJKL\nmnopqr";
+    private static final String FILE15 = " \n" + "a\n" + "!\n" + "1\n" + "A";
 	
 
     // test cases
@@ -173,7 +205,7 @@ public class MainTest {
         String args[] = {"-a", "-s", "orEO", inputFile5.getPath()};
         Main.main(args);
 
-        String expected5 = "Error: 123 xyz\nError: 567 abc\nLog: 123 abc\nLog: 567 abc";
+        String expected5 = "Error: 567 abc\nError: 123 xyz\nLog: 123 abc\nLog: 567 abc";
 
         String actual5 = getFileContent(inputFile5.getPath());
 
@@ -205,7 +237,7 @@ public class MainTest {
         //no arguments on the command line will pass an array of length 0 to the application, not null.
         String args[]  = new String[0];
         Main.main(args);
-        assertEquals("Usage: filesummary [-a [int]] [-r string | -k string] [-s string] <filename>", errStream.toString().trim());
+        assertEquals("Usage: filesummary [-a [int]] [-r string [int] | -k string [int]] [-s string] [-n] <filename>", errStream.toString().trim());
     }
 
     // Purpose: To provide an example of a test case format
@@ -238,7 +270,369 @@ public class MainTest {
         String actual9 = getFileContent(inputFile9.getPath());
 
         assertEquals("The files differ!", expected9, actual9);
-        assertEquals(" with the white ".trim(), outStream.toString().trim());
+	    assertEquals(" with the white ".trim(), outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest10() {
+
+        String args[] = {"nosuchfile.txt"};
+        Main.main(args);
+        assertEquals("File Not Found", errStream.toString().trim());
+
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest11() throws Exception {
+        File inputFile = createInputFile(FILE3);
+
+        String args[] = {"-k", "with", "-r", "with", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE3;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("Usage: filesummary [-a [int]] [-r string [int] | -k string [int]] [-s string] [-n] <filename>", errStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest12() throws Exception {
+        File inputFile = createInputFile(FILE4);
+
+        String args[] = {"-a", "-s", "abc", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE4;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest13() throws Exception {
+        File inputFile = createInputFile(FILE6);
+
+        String args[] = {inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE6;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("1", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest14() throws Exception {
+        File inputFile = createInputFile(FILE7);
+
+        String args[] = {"-k", "s", "2", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "and line breaks^$@ \r" +
+                "of \\different// types; ";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest15() throws Exception {
+        File inputFile = createInputFile(FILE8);
+
+        String args[] = {"-k", "", "2", "-s", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "When the battle is over georgia's team will be found\r" +
+                "With the Yellow Jacket's swarming 'round! Hey!";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("swarming", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest16() throws Exception {
+        File inputFile = createInputFile(FILE9);
+
+        String args[] = {"-a", "-r", "a", "3", "-s", ".", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE9;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals(".", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest17() throws Exception {
+        File inputFile = createInputFile(FILE10);
+
+        String args[] = {"-n", "-s", "1234", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "1Howdy Billy," + System.lineSeparator() +
+                "2I am going to take cs6300 and cs6400 next semester."  + System.lineSeparator() +
+                "3Did you take cs 6300 last semester? I want to"  + System.lineSeparator() +
+                "4take 2 courses so that I will graduate Asap!";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("3".trim(), outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest18() throws Exception {
+        File inputFile = createInputFile(FILE11);
+
+        String args[] = {"-s", "abc", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE11;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest19() throws Exception {
+        File inputFile = createInputFile(FILE12);
+
+        String args[] = {"-a", "2", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = System.lineSeparator()+System.lineSeparator()+System.lineSeparator()+
+                "I am going to take cs6300 and cs6400 next semester."  + System.lineSeparator() +
+                "Did you take cs 6300 last semester? I want to"  + System.lineSeparator() +
+                "take 2 courses so that I will graduate Asap!" + System.lineSeparator() +
+                "Howdy Billy,";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest20() throws Exception {
+        File inputFile = createInputFile(FILE13);
+
+        String args[] = {"-n", "-s", "abcdefghij", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "1ABCDEF\n2ghijkl\r3MNOPQR";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("ghij", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest21() throws Exception {
+        File inputFile = createInputFile(FILE13);
+
+        String args[] = {"-a", "3", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE13;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest22() throws Exception {
+        File inputFile = createInputFile(FILE14);
+
+        String args[] = {"-a", "-r", "z", "2", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE14;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest23() throws Exception {
+        File inputFile = createInputFile(FILE15);
+
+        String args[] = {"-a", "-s", "aA", inputFile.getPath()};
+        Main.main(args);
+
+        String expected =  " \n" + "!\n" + "1\n" + "a\n" + "A";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("a", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest24() throws Exception {
+        File inputFile = createInputFile(FILE2);
+
+        String args[] = {"-s", "LogErabcxyz", "-r", "w", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE2;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("Error", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest25() throws Exception {
+        File inputFile = createInputFile(FILE8);
+
+        String args[] = {"-a", "4", "-n", "-s", "1Up", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "9With the Yellow Jacket's swarming 'round! Hey!" + System.lineSeparator() +
+                "4Well drop a battle axe on georgia's head\r" +
+                "7'Till our bow wows rips through the air\r" +
+                "6Down on the old farm there will be no sound\r" +
+                "8When the battle is over georgia's team will be found\r" +
+                "5When we meet her our team is sure to beat her\r" +
+                "2Down with the red and black\r" +
+                "3Georgia Tech is out for a victory\r" +
+                "1Up with the white and gold";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("Up", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest26() throws Exception {
+        File inputFile = createInputFile(FILE2);
+
+        String args[] = {"-a", "5", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "Log: 123 abc\n" +
+                "Error: 567 abc\n" +
+                "Log: 567 abc" + System.lineSeparator() +
+                "Error: 123 xyz";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest27() throws Exception {
+        File inputFile = createInputFile(FILE7);
+
+        String args[] = {"-n", "-r", "*", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "2and line breaks^$@ \r" +
+                "3of \\different// types; \n" +
+                "4in 1 file\r" +
+                "5:-)";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest28() throws Exception {
+        File inputFile = createInputFile(FILE3);
+
+        String args[] = {"-k", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = FILE3;
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("Usage: filesummary [-a [int]] [-r string [int] | -k string [int]] [-s string] [-n] <filename>", errStream.toString().trim());
+
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest29() throws Exception {
+        File inputFile = createInputFile(FILE10);
+
+        String args[] = {"-k", "o", "2", "-a", "-n", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "3Did you take cs 6300 last semester? I want to" + System.lineSeparator() +
+                "4take 2 courses so that I will graduate Asap!";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
+    }
+
+    // Purpose: Example of Updated Specifications Test
+    @Test
+    public void mainTest30() throws Exception {
+        File inputFile = createInputFile(FILE8);
+
+        String args[] = {"-n", "-r", "1", "-s", "123456789", inputFile.getPath()};
+        Main.main(args);
+
+        String expected = "2Down with the red and black\r" +
+                "3Georgia Tech is out for a victory\r" +
+                "4Well drop a battle axe on georgia's head\r" +
+                "5When we meet her our team is sure to beat her\r" +
+                "6Down on the old farm there will be no sound\r" +
+                "7'Till our bow wows rips through the air\r" +
+                "8When the battle is over georgia's team will be found\r" +
+                "9With the Yellow Jacket's swarming 'round! Hey!";
+
+        String actual = getFileContent(inputFile.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+        assertEquals("", outStream.toString().trim());
     }
 
 }

@@ -146,7 +146,7 @@ public class MyMainTest {
         String args[] = {"-a", "-s", "", inputFile3.getPath()};
         Main.main(args);
 
-        String expected3 = "1 dog" + System.lineSeparator() + "2 cat";
+        String expected3 = "2 cat" + System.lineSeparator() + "1 dog";
 
         String actual3 = getFileContent(inputFile3.getPath());
 
@@ -163,7 +163,7 @@ public class MyMainTest {
         String args[] = {"-r", "", "-s", "103atocg", "-a", inputFile4.getPath()};
         Main.main(args);
 
-        String expected4 = "1 dog" + System.lineSeparator() + "2 cat";
+        String expected4 = "2 cat" + System.lineSeparator() + "1 dog";
 
         String actual4 = getFileContent(inputFile4.getPath());
 
@@ -196,7 +196,7 @@ public class MyMainTest {
         String args[] = {"-a", "", "-s", "", inputFile6.getPath()};
         Main.main(args);
 
-        String expected6 = "1 dog" + System.lineSeparator() + "2 cat";
+        String expected6 = "2 cat" + System.lineSeparator() + "1 dog";
 
         String actual6 = getFileContent(inputFile6.getPath());
 
@@ -213,7 +213,7 @@ public class MyMainTest {
         String args[] = {"-a", "", "-s", "dog", "-r", "", inputFile7.getPath()};
         Main.main(args);
 
-        String expected7 = "1 dog" + System.lineSeparator() + "2 cat";
+        String expected7 = "2 cat" + System.lineSeparator() + "1 dog";
 
         String actual7 = getFileContent(inputFile7.getPath());
 
@@ -230,7 +230,7 @@ public class MyMainTest {
         String args[] = {"-r", "dog123cat", "-a", "", inputFile8.getPath()};
         Main.main(args);
 
-        String expected8 = "1 dog" + System.lineSeparator() + "2 cat";
+        String expected8 = "2 cat" + System.lineSeparator() + "1 dog";
 
         String actual8 = getFileContent(inputFile8.getPath());
 
@@ -363,7 +363,7 @@ public class MyMainTest {
         String args[] = {"-a", "-1", inputFile16.getPath()};
         Main.main(args);
 
-        assertEquals("Usage: filesummary [-a [int]] [-r string | -k string] [-s string] <filename>", errStream.toString().trim());
+        assertEquals("Usage: filesummary [-a [int]] [-r string [int] | -k string [int]] [-s string] [-n] <filename>", errStream.toString().trim());
     }
 
     // Purpose: what if there is no argument for "r" option
@@ -436,7 +436,7 @@ public class MyMainTest {
         String args[] = {"-a", "", "-s", "", "-r", "", inputFile21.getPath()};
         Main.main(args);
 
-        String expected21 = "Error: 123 xyz\nError: 567 abc\nLog: 123 abc";
+        String expected21 = "Error: 567 abc\nError: 123 xyz\nLog: 123 abc";
 
         String actual21 = getFileContent(inputFile21.getPath());
 
@@ -470,7 +470,7 @@ public class MyMainTest {
         String args[] = {"-a", "", "-s", "32ktmjo1p", inputFile23.getPath()};
         Main.main(args);
 
-        String expected23 = "Error: 123 xyz\nError: 567 abc";
+        String expected23 = "Error: 567 abc\nError: 123 xyz";
 
         String actual23 = getFileContent(inputFile23.getPath());
 
