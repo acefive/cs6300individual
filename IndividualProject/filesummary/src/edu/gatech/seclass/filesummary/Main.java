@@ -1,6 +1,7 @@
 package edu.gatech.seclass.filesummary;
 
 import org.apache.commons.cli.*;
+import org.junit.rules.TemporaryFolder;
 
 import java.util.*;
 import java.util.regex.*;
@@ -9,10 +10,6 @@ import java.nio.charset.*;
 import java.nio.file.*;
 
 public class Main {
-
-    enum Eol {
-        WINDOWS, MAC, LINUX
-    }
 
     public static void main(String[] args) {
 
@@ -27,32 +24,26 @@ public class Main {
         String filePathString = args[args.length-1];
         Path filePath = Paths.get(filePathString);
 
-        String lineSep = "";
+        String content = null;
         try {
-            Reader r = new FileReader(filePathString);
-            int i;
-            Eol eol = null;
-            while(eol == null && (i = r.read()) != -1) {
-                if(i == '\r') {
-                    i = r.read();
-                    if(i == '\n') {
-                        eol = Eol.WINDOWS;
-                        lineSep = "\r\n";
-                    } else {
-                        eol = Eol.MAC;
-                        lineSep = "\r";
-                    }
-                } else if(i == '\n') {
-                    eol = Eol.LINUX;
-                    lineSep = "\n";
-                }
-            }
-            r.close();
-        } catch (FileNotFoundException e) {
-            System.err.print("File Not Found");
+            content = Files.readString(Paths.get(filePathString), charset);
+        } catch (IOException e) {
+            System.err.println("File Not Found");
             return;
         }
-        catch (IOException e) { e.printStackTrace(); }
+
+        assert content != null;
+        if(content.substring(Math.max(content.length() - 1, 0)).equals("\r")) {
+            content = "\r" + content.substring(0, Math.max(0, content.length() - 1));
+        } else if(content.substring(Math.max(content.length() - 2, 0)).equals("\r\n")) {
+            content = "\r\n" + content.substring(0, Math.max(0, content.length() - 2));
+        } else if(content.substring(Math.max(content.length() - 1, 0)).equals("\n")) {
+            content = "\n" + content.substring(0, Math.max(0, content.length() - 1));
+        }
+        content = content.replaceAll("\\r", "\r@@@");
+        content = content.replaceAll("\\n", "\n@@@");
+        content = content.replaceAll("\\r@@@\\n@@@", "\r\n@@@");
+        String[] contentSplited = content.split("@@@");
 
         args = Arrays.copyOf(args, args.length-1);
 
@@ -90,135 +81,177 @@ public class Main {
         try { cmd = parser.parse(options, args); }
         catch (ParseException e) { e.printStackTrace(); }
 
-        try {
-            List<String> lines = Files.readAllLines(filePath, charset);
+        if(cmd != null && cmd.hasOption("r") && cmd.hasOption("k")) {
+            usage();
+            return;
+        }
 
-            if(cmd.hasOption("s")) {
-                String sArgument = cmd.getOptionValue("s");
-                StringBuilder allLines = new StringBuilder();
-                for(String line : lines) { allLines.append(line).append(lineSep); }
-                if(sArgument == null || sArgument.equals("")) { System.out.println(); }
-                else {
-                    Matcher matcher = Pattern.compile("["+sArgument+"]+").matcher(allLines.toString());
-                    List<String> allMatches = new ArrayList<>();
-                    while(matcher.find()){ allMatches.add(matcher.group()); }
-                    allMatches.sort(new Comparator<>() {
-                        public int compare(String string1, String string2) {
-                            return string2.length() - string1.length();
-                        }
-                    });
+        if(cmd != null && cmd.hasOption("s")) {
+            String sArgument = cmd.getOptionValue("s");
+            if(sArgument == null || sArgument.equals("")) {
+                System.out.println("");
+            } else {
+                Matcher matcher = Pattern.compile("["+sArgument+"]+").matcher(content);
+                List<String> allMatches = new ArrayList<>();
+                while(matcher.find()) {
+                    allMatches.add(matcher.group());
+                }
+                allMatches.sort((string1, string2) -> string2.length() - string1.length());
+                if(allMatches.size() != 0) {
                     System.out.println(allMatches.get(0));
                 }
-                filesummaryNoOptions = false;
             }
-            if(cmd.hasOption("n")) {
-                int lineValue = 1;
-                for(ListIterator i = lines.listIterator(); i.hasNext(); lineValue++) {
-                    i.set(String.valueOf(lineValue) + i.next());
-                }
-                filesummaryNoOptions = false;
-            }
-            if(cmd.hasOption("r") && !cmd.hasOption("k")) {
-                String[] rArgument = cmd.getOptionValues("r");
+            filesummaryNoOptions = false;
+        }
 
-                if(rArgument[0] != null && !rArgument[0].equals("")) {
-                    Iterator iterator = lines.iterator();
-                    while(iterator.hasNext()) {
-                        String string = (String)iterator.next();
-                        if(string.contains(rArgument[0])) {
-                            iterator.remove();
-                        }
-                    }
-                }
-                if(rArgument.length == 2) {
-                    int rNumber = Integer.parseInt(rArgument[1]);
-                    for(int i = 1; i <= rNumber; i++) {
-                        lines.remove(lines.size() - i);
-                    }
-                    filesummaryNoOptions = false;
-                }
-
+        if(cmd != null && cmd.hasOption("n")) {
+            int lineValue = 1;
+            for(int i = 0; i < contentSplited.length; i++) {
+                contentSplited[i] = i+1 + contentSplited[i];
             }
-            if(cmd.hasOption("k") && !cmd.hasOption("r")) {
-                String[] kArgument = cmd.getOptionValues("k");
+            filesummaryNoOptions = false;
+        }
 
-                if(kArgument[0].equals("")) {
-                    lines = new ArrayList<>();
-                } else {
-                    Iterator iterator = lines.iterator();
-                    while(iterator.hasNext()) {
-                        String string = (String)iterator.next();
-                        if(!string.contains(kArgument[0])) {
-                            iterator.remove();
-                        }
-                    }
-                }
-                if(kArgument.length == 2) {
-                    int kNumber = Integer.parseInt(kArgument[1]);
-                    for(int i = 0; i < lines.size() - kNumber; i++) {
-                        lines.remove(i);
-                    }
-                }
-
-                filesummaryNoOptions = false;
-            }
-            if(cmd.hasOption("r") && cmd.hasOption("k")) {
-                usage();
-                return;
-            }
-            if(cmd.hasOption("a")) {
+        Iterator<Option> iterator = cmd.iterator();
+        while(iterator.hasNext()) {
+            Option temp = iterator.next();
+            if(temp.equals(aOption)) {
                 String aArgument = cmd.getOptionValue("a");
-
-                if(aArgument == null || aArgument.equals("")) {
-                    lines.sort(new Comparator<String>() {
-                        public int compare(String string1, String string2) {
-                            return string1.replaceAll("[^a-zA-Z]+", "").trim().compareTo(string2.replaceAll("[^a-zA-Z]+", "").trim());
-                        }
-                    });
-                }
-                else {
-                    int aNumber;
+                int aNumber = 0;
+                if(aArgument != null && !aArgument.equals("")){
                     if(aArgument.length() > 6) { aNumber = 999999; }
                     else { aNumber = Integer.parseInt(aArgument); }
                     if(aNumber <= 0) {
                         usage();
                         return;
-                    } else {
-                        lines.sort(new Comparator<String>() {
-                            public int compare(String string1, String string2) {
-                                String sub1, sub2;
-                                if (aNumber < string1.length()) { sub1 = string1.substring(aNumber).replaceAll("[^a-zA-Z]+", "").trim(); }
-                                else { sub1 = ""; }
-                                if (aNumber < string2.length()) { sub2 = string2.substring(aNumber).replaceAll("[^a-zA-Z]+", "").trim(); }
-                                else { sub2 = ""; }
+                    }
+                }
+                int finalANumber = aNumber;
+                Arrays.sort(contentSplited, (string1, string2) -> {
+                    String sub1, sub2;
+                    if (finalANumber < string1.length()) { sub1 = string1.substring(finalANumber).replaceAll("[^a-zA-Z]+", "").trim(); }
+                    else { sub1 = ""; }
+                    if (finalANumber < string2.length()) { sub2 = string2.substring(finalANumber).replaceAll("[^a-zA-Z]+", "").trim(); }
+                    else { sub2 = ""; }
+                    if(sub1.length() > 0 && sub2.length() > 0) {
+                        while(sub1.charAt(0) == sub2.charAt(0)) {
+                            if(sub1.length() <= 1 || sub2.length() <= 1) {
                                 return sub1.compareTo(sub2);
+                            } else {
+                                sub1 = sub1.substring(1);
+                                sub2 = sub2.substring(1);
                             }
-                        });
+                        }
+                        if(Character.toUpperCase(sub1.charAt(0)) == Character.toUpperCase(sub2.charAt(0))) {
+                            if(Character.isUpperCase(sub1.charAt(0))) {
+                                return 1;
+                            } else {
+                                return -1;
+                            }
+                        } else {
+                            return sub1.compareToIgnoreCase(sub2);
+                        }
+                    } else {
+                        return sub1.compareToIgnoreCase(sub2);
+                    }
+                });
+                filesummaryNoOptions = false;
+            }
+            if(temp.equals(rOption)) {
+                String[] rArgument = cmd.getOptionValues("r");
+                if(rArgument == null) {
+                    usage();
+                    return;
+                }
+                if(rArgument.length == 2) {
+                    int rNumber = Integer.parseInt(rArgument[1]);
+                    for(int i = contentSplited.length - 1; i >= 0 && rNumber > 0; i--) {
+                        if(contentSplited[i].contains(rArgument[0])) {
+                            contentSplited[i] = "";
+                            rNumber--;
+                        }
+                    }
+                } else if(!rArgument[0].equals("")) {
+                    for(int i = 0; i < contentSplited.length; i++) {
+                        if(contentSplited[i].contains(rArgument[0])) {
+                            contentSplited[i] = "";
+                        }
                     }
                 }
                 filesummaryNoOptions = false;
             }
-            if(filesummaryNoOptions) {
-                int totalWord = 0;
-                for(String line : lines) {
-                    line = line.replaceAll("[^a-zA-Z0-9]+", " ");
-                    String[] countNum = line.trim().split("\\s+");
-                    if(!countNum[0].equals("")) {
-                        totalWord += countNum.length;
+            if(temp.equals(kOption)) {
+                String[] kArgument = cmd.getOptionValues("k");
+                if(kArgument == null) {
+                    usage();
+                    return;
+                }
+                if(!kArgument[0].equals("")) {
+                    for(int i = 0; i < contentSplited.length; i++) {
+                        if(!contentSplited[i].contains(kArgument[0])) {
+                            contentSplited[i] = "";
+                        }
                     }
                 }
-                System.out.println(totalWord);
+                if(kArgument.length == 2) {
+                    int kNumber = Integer.parseInt(kArgument[1]);
+                    for(int i = contentSplited.length - 1; i >= 0; i--) {
+                        if(contentSplited[i] == "") {
+                            continue;
+                        } else if(kNumber > 0) {
+                            kNumber--;
+                        } else {
+                            contentSplited[i] = "";
+                        }
+                    }
+                }
+                filesummaryNoOptions = false;
             }
-            FileWriter writer = new FileWriter(filePathString);
+        }
 
-            for(int i = 0; i < lines.size() - 1; i++) {
-                writer.write(lines.get(i) + lineSep);
+        if(filesummaryNoOptions) {
+            int totalWord = 0;
+            for(String line : contentSplited) {
+                line = line.replaceAll("[^a-zA-Z0-9]+", " ");
+                String[] countNum = line.trim().split("\\s+");
+                if(!countNum[0].equals("")) {
+                    totalWord += countNum.length;
+                }
             }
-            if(lines.size() > 0) {
-                writer.write(lines.get(lines.size()-1));
+            System.out.println(totalWord);
+        }
+
+        if(cmd.hasOption("a")) {
+            for(int i = 0; i < contentSplited.length - 1; i++) {
+                if(!contentSplited[i].substring(Math.max(contentSplited[i].length() - 1, 0)).equals("\r") &&
+                        !contentSplited[i].substring(Math.max(contentSplited[i].length() - 2, 0)).equals("\r\n") &&
+                        !contentSplited[i].substring(Math.max(contentSplited[i].length() - 1, 0)).equals("\n") &&
+                        !contentSplited[i].equals("")) {
+                    contentSplited[i] += System.lineSeparator();
+                }
             }
-            writer.close();
-        } catch (IOException e) { e.printStackTrace(); }
+        }
+
+        content = String.join("", contentSplited);
+
+        if(!content.equals("\r") && !content.equals("\r\n") && !content.equals("\n")) {
+            if(content.substring(Math.max(content.length() - 1, 0)).equals("\r")) {
+                content = content.substring(0,content.length()-1);
+            } else if(content.substring(Math.max(content.length() - 2, 0)).equals("\r\n")) {
+                content = content.substring(0,content.length()-2);
+            } else if(content.substring(Math.max(content.length() - 1, 0)).equals("\n")) {
+                content = content.substring(0,content.length()-1);
+            }
+        }
+
+        try {
+            OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(filePath.toFile()), StandardCharsets.UTF_8);
+            fileWriter.write(content);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static void usage() {
