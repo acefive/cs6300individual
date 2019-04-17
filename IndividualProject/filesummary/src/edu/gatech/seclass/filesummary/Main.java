@@ -26,7 +26,8 @@ public class Main {
 
         String content = null;
         try {
-            content = Files.readString(Paths.get(filePathString), charset);
+            content = new String(Files.readAllBytes(Paths.get(filePathString)));
+            //content = Files.readString(Paths.get(filePathString), charset);
         } catch (IOException e) {
             System.err.println("File Not Found");
             return;
