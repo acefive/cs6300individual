@@ -1,0 +1,260 @@
+JUnit version 4.12
+.E..E.E.E.E.E.E.E...E.E.E.E.E..E...E.E.E.E...E.E.E.E.E.E.E.E.E
+Time: 0.572
+There were 27 failures:
+1) filesummaryTest1(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #7. 
+Arguments used: [-s, dog, cat, C:\Users\xingc\AppData\Local\Temp\junit7516060417283824541\junit3775280994332934536.tmp] 
+Original File: 
+1 dog
+2 cat 
+New File Content: 
+1 dog
+2 cat 
+Output: dog
+2) filesummaryTest3(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-a, -s, , C:\Users\xingc\AppData\Local\Temp\junit2414118100332541492\junit4296809785366277514.tmp] 
+Original File: 
+1 dog
+2 cat 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+3) filesummaryTest4(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #8. 
+Arguments used: [-r, , -s, 103atocg, -a, C:\Users\xingc\AppData\Local\Temp\junit6730801873302059718\junit3424415962952487537.tmp] 
+Original File: 
+1 dog
+2 cat 
+Throws Exception: *Method never completes*
+4) filesummaryTest5(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #10. 
+Arguments used: [-a, -k, okm, C:\Users\xingc\AppData\Local\Temp\junit8697869058472165777\junit7965298258102340140.tmp] 
+Original File: 
+1 dog
+2 cat 
+Throws Exception: IndexOutOfBoundsException
+5) filesummaryTest6(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-a, , -s, , C:\Users\xingc\AppData\Local\Temp\junit7651721159487521326\junit8377007471093807017.tmp] 
+Original File: 
+1 dog
+2 cat 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+6) filesummaryTest7(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #8. 
+Arguments used: [-a, , -s, dog, -r, , C:\Users\xingc\AppData\Local\Temp\junit3207825644632587698\junit6588937500957173843.tmp] 
+Original File: 
+1 dog
+2 cat 
+Throws Exception: *Method never completes*
+7) filesummaryTest8(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #7. 
+Arguments used: [-r, dog123cat, -a, , C:\Users\xingc\AppData\Local\Temp\junit2778390534780955801\junit1686515655813414619.tmp] 
+Original File: 
+1 dog
+2 cat 
+New File Content: 
+2 cat
+1 dog 
+Output: 
+8) filesummaryTest9(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-s, , -a, 1, C:\Users\xingc\AppData\Local\Temp\junit7629376137426659844\junit3747910190183524070.tmp] 
+Original File: 
+1 dog
+2 cat 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+9) filesummaryTest12(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-s, , -a, 9999999999999999999, C:\Users\xingc\AppData\Local\Temp\junit9097222449248895689\junit3662200543703836744.tmp] 
+Original File: 
+1 dog
+2 cat 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+10) filesummaryTest13(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #7. 
+Arguments used: [-r, -s, og, -a, 999999999999, C:\Users\xingc\AppData\Local\Temp\junit8141151778016061232\junit3188447744394821595.tmp] 
+Original File: 
+1 dog
+2 cat 
+New File Content: 
+2 cat
+1 dog 
+Output: 
+11) filesummaryTest14(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #7. 
+Arguments used: [-r, 2, -a, 9999999999999, C:\Users\xingc\AppData\Local\Temp\junit6216214698201276760\junit1149117866460236263.tmp] 
+Original File: 
+1 dog
+2 cat 
+New File Content: 
+1 dog 
+Output: 
+12) filesummaryTest15(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-s, , C:\Users\xingc\AppData\Local\Temp\junit8468360915825523874\junit2211614003806725927.tmp] 
+Original File: 
+1 dog
+2 cat 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+13) filesummaryTest16(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #7. 
+Arguments used: [-a, -1, C:\Users\xingc\AppData\Local\Temp\junit5132670093203535825\junit3131640039741689264.tmp] 
+Original File: 
+1 dog
+2 cat 
+New File Content: 
+2 cat
+1 dog 
+Output: 
+14) filesummaryTest18(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-a, -s, , -r, , C:\Users\xingc\AppData\Local\Temp\junit4822368715535507843\junit5562442653551277503.tmp] 
+Original File: 
+Up with the white and goldDown with the red and black 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+15) filesummaryTest21(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-a, , -s, , -r, , C:\Users\xingc\AppData\Local\Temp\junit6141918459004798074\junit2744589464618449925.tmp] 
+Original File: 
+Log: 123 abc
+Error: 123 xyz
+Error: 567 abc 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+16) filesummaryTest22(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #7. 
+Arguments used: [-a, , -s, 3ithn4ui, -r, 3, C:\Users\xingc\AppData\Local\Temp\junit5111907464647006166\junit6115967334472298156.tmp] 
+Original File: 
+Error: 123 xyz
+Log: 567 abc 
+New File Content: 
+Log: 567 abc 
+Output: 3
+17) filesummaryTest23(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #7. 
+Arguments used: [-a, , -s, 32ktmjo1p, C:\Users\xingc\AppData\Local\Temp\junit2111543582581245023\junit5156903382252517330.tmp] 
+Original File: 
+Error: 123 xyz
+Error: 567 abc 
+New File Content: 
+Error: 567 abc
+Error: 123 xyz 
+Output: 123
+18) filesummaryTest24(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-a, 1, -s, , -r, , C:\Users\xingc\AppData\Local\Temp\junit4055226364648175376\junit5776942190539982725.tmp] 
+Original File: 
+Error: 567 abc
+Log: 567 abc 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+19) filesummaryTest27(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-a, 9999, -s, , -r, , C:\Users\xingc\AppData\Local\Temp\junit4473756488128283409\junit7101142730031723620.tmp] 
+Original File: 
+Log: 123 abc
+Error: 123 xyz 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+20) filesummaryTest28(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #4. 
+Arguments used: [-a, 9999, -s, blabla123, -r, 23, C:\Users\xingc\AppData\Local\Temp\junit5715544713853412894\junit4812616628988951515.tmp] 
+Original File: 
+Log: 143gv4g23 abc
+Error: 123 xyz
+Error: 567 abc
+Log: 567 abc 
+Throws Exception: String index out of range: -9985
+21) filesummaryTest29(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #4. 
+Arguments used: [-a, 9999, -s, asbfj iosj23, C:\Users\xingc\AppData\Local\Temp\junit6587750649873230262\junit2468173105596083076.tmp] 
+Original File: 
+Log: 123 abc
+Error: 123 fr32g4g4xyz
+Error: 567 abc
+Log: 567 abc 
+Throws Exception: String index out of range: -9976
+22) filesummaryTest30(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #9. 
+Arguments used: [-s, , -r, , C:\Users\xingc\AppData\Local\Temp\junit3976490308744870088\junit763584080165867992.tmp] 
+Original File: 
+Log: 123 abc
+Error: 123 xyz
+Error: 554ml5y967 abc
+Log: 567 abc 
+Throws Exception: Unclosed character class near index 2
+[\Q\E]+
+  ^
+23) filesummaryTest31(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #1. 
+Arguments used: [-r, , 0, C:\Users\xingc\AppData\Local\Temp\junit8044880589619669458\junit434208945327212008.tmp] 
+Original File: 
+Log: 123 abc
+Error: 123 xyz
+Error: 554ml5y967 abc
+Log: 567 abc 
+Throws Exception: ArrayIndexOutOfBoundsException
+24) filesummaryTest32(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #5. 
+Arguments used: [-a, -a, C:\Users\xingc\AppData\Local\Temp\junit2160857096639230446\junit6091582829471661657.tmp] 
+Original File: 
+Log: 123 abc
+Error: 123 xyz
+Error: 554ml5y967 abc
+Log: 567 abc 
+New File Content: 
+Log: 123 abc
+Error: 123 xyz
+Error: 554ml5y967 abc
+Log: 567 abc 
+Output: 12
+25) filesummaryTest33(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #6. 
+Arguments used: [-s, C:\Users\xingc\AppData\Local\Temp\junit66053430725878078\junit9188270323061907434.tmp] 
+Original File: 
+Log: 123 abc
+Error: 123 xyz
+Error: 554ml5y967 abc
+Log: 567 abc 
+New File Content: 
+Log: 123 abc
+Error: 123 xyz
+Error: 554ml5y967 abc
+Log: 567 abc 
+Output: 554ml5
+26) filesummaryTest34(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #2. 
+Arguments used: [C:\Users\xingc\AppData\Local\Temp\junit9081292481904803792\junit2694928261139703205.tmp] 
+Original File: 
+ 
+New File Content: 
+ 
+Output: 
+27) filesummaryTest35(edu.gatech.seclass.filesummary.MyMainTest)
+edu.gatech.seclass.filesummary.SDPBugException: You found Bug #3. 
+Arguments used: [-n, C:\Users\xingc\AppData\Local\Temp\junit638848994626390518\junit3026946660878139396.tmp] 
+Original File: 
+  
+New File Content: 
+ 
+Output: 
+
+FAILURES!!!
+Tests run: 35,  Failures: 27
+
